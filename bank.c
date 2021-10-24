@@ -1,9 +1,9 @@
 #include<stdio.h>
 
-void createAccount(){
+void createAccount(char fname[], char lname[], char location[]){
 }
 
-float accountBalance(char fname[], char lname[], char location[]){
+float accountBalance(){
 }
 
 int main(){
