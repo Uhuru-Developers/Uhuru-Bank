@@ -1,7 +1,27 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
+#include<time.h>
+
+const char* Random(){
+	srand(time(NULL));
+	int i, n=0, arr[5];
+	char string[9] = {0};
+	
+	for(i=0; i<4; i++){
+		arr[i] = rand() % 10;
+	}
+	
+	for(i=0; i<4; i++){
+		n += sprintf(&string[n], "%d", arr[i]);
+	}
+	
+	return string;
+}
+
 void display(char sname[], char gname[], char date[], char district[], char village[], char contact[]){
-	char space[]=" ", stored2[100];
+	char space[]=" ", stored2[100], id[6];
+	
 	strcpy(stored2, strcat(sname, space));
 	printf("Name: ");
 	puts(strcat(stored2, gname));
@@ -10,20 +30,20 @@ void display(char sname[], char gname[], char date[], char district[], char vill
 	puts(date);
 	
 	printf("\nAccount number: ");
-	puts(strcat(stored2, gname));
+	strncpy(id, &date[6], 4);
+	puts(strcat(id, Random()));
 	
 	printf("\nContact: ");
 	puts(contact);
 	
 	printf("\nCustomer ID: ");
-	puts(strcat(stored2, gname));
+	puts(strcat(gname, Random()));
 	
 	printf("\nDistrict: ");
 	puts(district);
 	
 	printf("\nVillage: ");
-	puts(village);
-	
+	puts(village);	
 }
 
 float accountBalance(float account){
@@ -41,6 +61,8 @@ int main(){
 	printf("Enter your date of birth: ");
 	gets(date);
 	
+	char id = date[0]+date[1]+date[3]+date[4]+date[6]+date[7]+date[8]+date[9];
+	
 	printf("Enter your district: ");
 	gets(district);
 	
@@ -50,8 +72,7 @@ int main(){
 	printf("Enter your contact: ");
 	gets(contact);
 	
-	display(sname, gname, date, district, village, contact);
+	printf("\n");
 	
+	display(sname, gname, date, district, village, contact);
 }
-
-
